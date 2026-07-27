@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -22,19 +23,12 @@ box-sizing:border-box;
 body{
 
 font-family:Poppins,sans-serif;
-
 background:linear-gradient(135deg,#090b16,#1b2748);
-
 height:100vh;
-
 overflow:hidden;
-
 display:flex;
-
 justify-content:center;
-
 align-items:center;
-
 color:white;
 
 }
@@ -42,25 +36,26 @@ color:white;
 .container{
 
 text-align:center;
-
-z-index:10;
-
 padding:20px;
-
-animation:fade 2s;
+z-index:10;
+animation:fade 1.5s;
 
 }
 
 @keyframes fade{
 
 from{
+
 opacity:0;
 transform:scale(.8);
+
 }
 
 to{
+
 opacity:1;
 transform:scale(1);
+
 }
 
 }
@@ -68,33 +63,23 @@ transform:scale(1);
 h1{
 
 font-family:"Great Vibes";
-
-font-size:72px;
-
+font-size:70px;
 color:#ff7eb6;
-
-margin-bottom:10px;
 
 }
 
 h2{
 
-font-size:28px;
-
-margin-bottom:25px;
+margin-bottom:20px;
 
 }
 
 img{
 
-width:300px;
-
-max-width:85vw;
-
-border-radius:25px;
-
-box-shadow:0 0 40px rgba(255,105,180,.6);
-
+width:320px;
+max-width:90vw;
+border-radius:20px;
+box-shadow:0 0 40px hotpink;
 animation:zoom 2s infinite alternate;
 
 }
@@ -118,11 +103,8 @@ transform:scale(1.05);
 p{
 
 margin-top:25px;
-
 font-size:20px;
-
 line-height:1.8;
-
 max-width:700px;
 
 }
@@ -130,61 +112,55 @@ max-width:700px;
 .buttons{
 
 margin-top:35px;
-
 display:flex;
-
 justify-content:center;
-
 gap:15px;
-
 flex-wrap:wrap;
 
 }
 
 button{
 
-padding:15px 28px;
-
+padding:15px 30px;
 border:none;
-
-border-radius:35px;
-
+border-radius:40px;
 cursor:pointer;
-
-font-size:18px;
-
 background:#ff2d75;
-
 color:white;
-
+font-size:18px;
 transition:.3s;
 
 }
 
 button:hover{
 
-transform:translateY(-3px) scale(1.05);
+transform:scale(1.05);
+
+}
+
+#musicBtn{
+
+position:fixed;
+right:20px;
+top:20px;
+
+background:white;
+color:#111;
 
 }
 
 #hearts{
 
 position:fixed;
-
 inset:0;
-
 pointer-events:none;
-
-overflow:hidden;
 
 }
 
 .heart{
 
 position:absolute;
-
 font-size:22px;
-
 animation:fall linear forwards;
 
 }
@@ -192,13 +168,19 @@ animation:fall linear forwards;
 @keyframes fall{
 
 0%{
+
 transform:translateY(-50px);
+
 opacity:1;
+
 }
 
 100%{
+
 transform:translateY(110vh);
+
 opacity:0;
+
 }
 
 }
@@ -206,23 +188,24 @@ opacity:0;
 .balloon{
 
 position:absolute;
-
-bottom:-150px;
-
+bottom:-120px;
 font-size:45px;
-
-animation:naik linear forwards;
+animation:up linear forwards;
 
 }
 
-@keyframes naik{
+@keyframes up{
 
 0%{
+
 transform:translateY(0);
+
 }
 
 100%{
+
 transform:translateY(-130vh);
+
 }
 
 }
@@ -230,10 +213,8 @@ transform:translateY(-130vh);
 canvas{
 
 position:fixed;
-
 top:0;
 left:0;
-
 pointer-events:none;
 
 }
@@ -244,7 +225,11 @@ pointer-events:none;
 
 <body>
 
-<canvas id="confetti"></canvas>
+<audio id="bgMusic" autoplay loop>
+<source src="../assets/music.mp3" type="audio/mpeg">
+</audio>
+
+<canvas id="canvas"></canvas>
 
 <div id="hearts"></div>
 
@@ -258,13 +243,13 @@ pointer-events:none;
 
 <p>
 
-Aku memilih brownies ini karena aku tahu rasanya pasti lebih enak daripada kue ulang tahun yang penuh krim. 😊
+Aku memilih brownies ini karena aku tahu rasanya pasti lebih enak daripada kue ulang tahun dengan krim.
 
-Semoga setiap potong brownies ini membawa kebahagiaan, sama seperti senyummu yang selalu membuat hariku lebih indah.
+Semoga di umur yang baru ini kamu selalu sehat, bahagia, dimudahkan dalam segala urusan, dan semua impianmu segera tercapai.
 
-Selamat ulang tahun sayang. Semoga semua doa dan impianmu tercapai.
+Terima kasih sudah menjadi seseorang yang begitu spesial.
 
-Aku sayang kamu. ❤️
+Aku sayang kamu ❤️
 
 </p>
 
@@ -286,11 +271,53 @@ Aku sayang kamu. ❤️
 
 </div>
 
+<button id="musicBtn">
+
+🔊 Musik
+
+</button>
+
 <script>
 
-// HEARTS
+const music=document.getElementById("bgMusic");
 
-function createHeart(){
+// AUTOPLAY
+
+music.play().catch(()=>{
+
+console.log("Autoplay diblokir.");
+
+document.addEventListener("click",()=>{
+
+music.play();
+
+},{once:true});
+
+});
+
+// Tombol musik
+
+document.getElementById("musicBtn").onclick=function(){
+
+if(music.paused){
+
+music.play();
+
+this.innerHTML="🔊 Musik";
+
+}else{
+
+music.pause();
+
+this.innerHTML="🔈 Musik";
+
+}
+
+};
+
+// HEART
+
+function heart(){
 
 const h=document.createElement("div");
 
@@ -304,11 +331,15 @@ h.style.animationDuration=(4+Math.random()*4)+"s";
 
 document.getElementById("hearts").appendChild(h);
 
-setTimeout(()=>h.remove(),8000);
+setTimeout(()=>{
+
+h.remove();
+
+},8000);
 
 }
 
-setInterval(createHeart,300);
+setInterval(heart,250);
 
 // BALLOON
 
@@ -318,7 +349,7 @@ const b=document.createElement("div");
 
 b.className="balloon";
 
-b.innerHTML=["🎈","🎉","🎁"][Math.floor(Math.random()*3)];
+b.innerHTML=["🎈","🎁","🎉"][Math.floor(Math.random()*3)];
 
 b.style.left=Math.random()*100+"vw";
 
@@ -326,7 +357,11 @@ b.style.animationDuration=(8+Math.random()*5)+"s";
 
 document.body.appendChild(b);
 
-setTimeout(()=>b.remove(),13000);
+setTimeout(()=>{
+
+b.remove();
+
+},13000);
 
 }
 
@@ -334,7 +369,7 @@ setInterval(balloon,900);
 
 // CONFETTI
 
-const canvas=document.getElementById("confetti");
+const canvas=document.getElementById("canvas");
 
 const ctx=canvas.getContext("2d");
 
@@ -342,17 +377,17 @@ canvas.width=window.innerWidth;
 
 canvas.height=window.innerHeight;
 
-const pieces=[];
+const confetti=[];
 
-for(let i=0;i<180;i++){
+for(let i=0;i<200;i++){
 
-pieces.push({
+confetti.push({
 
 x:Math.random()*canvas.width,
 
 y:Math.random()*canvas.height,
 
-r:Math.random()*6+2,
+r:Math.random()*5+2,
 
 d:Math.random()*5+1,
 
@@ -366,23 +401,23 @@ function draw(){
 
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
-pieces.forEach(p=>{
+confetti.forEach(c=>{
 
 ctx.beginPath();
 
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.arc(c.x,c.y,c.r,0,Math.PI*2);
 
-ctx.fillStyle=p.c;
+ctx.fillStyle=c.c;
 
 ctx.fill();
 
-p.y+=p.d;
+c.y+=c.d;
 
-if(p.y>canvas.height){
+if(c.y>canvas.height){
 
-p.y=-10;
+c.y=-10;
 
-p.x=Math.random()*canvas.width;
+c.x=Math.random()*canvas.width;
 
 }
 
@@ -394,24 +429,19 @@ requestAnimationFrame(draw);
 
 draw();
 
-// SHARE
+// WhatsApp
 
 function shareWA(){
 
-const pesan=`🎂 Happy Birthday Sayang ❤️
+const text=`🎂 Happy Birthday Sayang ❤️
 
-Semoga kamu selalu bahagia, sehat, dan semua impianmu tercapai.
+Semoga selalu bahagia, sehat, panjang umur dan semua impianmu tercapai ❤️`;
 
-❤️`;
-
-const url="https://wa.me/?text="+encodeURIComponent(pesan);
-
-window.open(url);
+window.open("https://wa.me/?text="+encodeURIComponent(text));
 
 }
 
 </script>
 
 </body>
-
 </html>
