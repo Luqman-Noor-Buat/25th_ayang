@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pilih Hadiah 🎁</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:Poppins,sans-serif;
+
+background:linear-gradient(135deg,#0f172a,#1e293b);
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+overflow:hidden;
+
+color:white;
+
+}
+
+.container{
+
+text-align:center;
+
+width:95%;
+
+max-width:900px;
+
+}
+
+h1{
+
+font-family:Great Vibes;
+
+font-size:60px;
+
+color:#ff7ab6;
+
+margin-bottom:10px;
+
+}
+
+p{
+
+margin-bottom:50px;
+
+font-size:20px;
+
+}
+
+.gifts{
+
+display:flex;
+
+justify-content:center;
+
+gap:40px;
+
+flex-wrap:wrap;
+
+}
+
+.gift{
+
+font-size:120px;
+
+cursor:pointer;
+
+transition:.3s;
+
+animation:goyang 2s infinite;
+
+user-select:none;
+
+}
+
+.gift:hover{
+
+transform:scale(1.15);
+
+}
+
+@keyframes goyang{
+
+0%{transform:rotate(-5deg);}
+
+50%{transform:rotate(5deg);}
+
+100%{transform:rotate(-5deg);}
+
+}
+
+#popup{
+
+position:fixed;
+
+top:50%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+background:white;
+
+color:#111;
+
+padding:35px;
+
+border-radius:20px;
+
+display:none;
+
+text-align:center;
+
+width:330px;
+
+box-shadow:0 0 40px hotpink;
+
+animation:zoom .4s;
+
+}
+
+#popup h2{
+
+margin-bottom:15px;
+
+}
+
+#popup button{
+
+margin-top:20px;
+
+padding:12px 25px;
+
+border:none;
+
+border-radius:30px;
+
+background:#ff2d75;
+
+color:white;
+
+cursor:pointer;
+
+font-size:17px;
+
+}
+
+@keyframes zoom{
+
+from{
+
+transform:translate(-50%,-50%) scale(.5);
+
+opacity:0;
+
+}
+
+to{
+
+transform:translate(-50%,-50%) scale(1);
+
+opacity:1;
+
+}
+
+}
+
+#love{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+overflow:hidden;
+
+}
+
+.heart{
+
+position:absolute;
+
+font-size:20px;
+
+animation:fall linear forwards;
+
+}
+
+@keyframes fall{
+
+0%{
+
+transform:translateY(-30px);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(110vh);
+
+opacity:0;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="love"></div>
+
+<div class="container">
+
+<h1>Pilih Hadiahmu 🎁</h1>
+
+<p>
+
+Hanya ada satu hadiah spesial...
+
+Coba pilih yang menurutmu benar ❤️
+
+</p>
+
+<div class="gifts">
+
+<div class="gift" onclick="pilih(1)">🎁</div>
+
+<div class="gift" onclick="pilih(2)">🎁</div>
+
+<div class="gift" onclick="pilih(3)">🎁</div>
+
+</div>
+
+</div>
+
+<div id="popup">
+
+<h2 id="judul"></h2>
+
+<p id="isi"></p>
+
+<button onclick="lanjut()">
+
+Lanjut ❤️
+
+</button>
+
+</div>
+
+<script>
+
+let benar=false;
+
+function hati(){
+
+const h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.animationDuration=(3+Math.random()*3)+"s";
+
+document.getElementById("love").appendChild(h);
+
+setTimeout(()=>{
+
+h.remove();
+
+},6000);
+
+}
+
+setInterval(hati,600);
+
+function pilih(no){
+
+document.getElementById("popup").style.display="block";
+
+if(no==2){
+
+benar=true;
+
+document.getElementById("judul").innerHTML="🎉 Selamat!";
+
+document.getElementById("isi").innerHTML="Kamu menemukan hadiah spesial ❤️";
+
+}else{
+
+benar=false;
+
+document.getElementById("judul").innerHTML="😂 Ups...";
+
+document.getElementById("isi").innerHTML="Hadiah ini kosong. Coba yang lain ya.";
+
+}
+
+}
+
+function lanjut(){
+
+if(benar){
+
+window.location.href="game.html";
+
+}else{
+
+document.getElementById("popup").style.display="none";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
