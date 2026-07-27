@@ -256,16 +256,12 @@ Mas sayang ayang ❤️
 
 <div class="buttons">
 
-<button onclick="location.reload()">
-
+<button onclick="window.location.href='https://luqman-noor-buat.github.io/25th_ayang/'">
 🔄 Main Lagi
-
 </button>
 
-<button onclick="shareWA()">
-
-💬 Bagikan
-
+<button onclick="chatAyang()">
+    💌 Kirim Balasan
 </button>
 
 </div>
@@ -432,13 +428,22 @@ draw();
 
 // WhatsApp
 
-function shareWA(){
+function chatAyang(){
 
-const text=`🎂 Happy Birthday Sayang ❤️
+    const nomor = "6281227074534"; // Ganti dengan nomor WA tujuan (tanpa +, tanpa spasi)
 
-Semoga selalu bahagia, sehat, panjang umur dan semua impian ayang tercapai ❤️`;
+    const pesan = `Mas gantenggggggg ❤️
 
-window.open("https://wa.me/?text="+encodeURIComponent(text));
+Adek sampun lihat kejutannya sayang 🥹 
+
+Makasih ya sayang ❤️ 
+
+Adek Love Mas ❤️`;
+
+    window.open(
+        `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`,
+        "_blank"
+    );
 
 }
 
