@@ -1,182 +1,384 @@
+/* ===========================
+   RESET
+=========================== */
+
 *{
-
-margin:0;
-
-padding:0;
-
-box-sizing:border-box;
-
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
+
+html,body{
+    width:100%;
+    height:100%;
+}
+
+/* ===========================
+   BODY
+=========================== */
 
 body{
 
-font-family:Poppins,sans-serif;
+    font-family:'Poppins',sans-serif;
 
-background:#0f172a;
+    background:linear-gradient(135deg,#090b16,#182848);
 
-overflow:hidden;
+    overflow:hidden;
 
-color:white;
+    display:flex;
 
-height:100vh;
+    justify-content:center;
 
-display:flex;
+    align-items:center;
 
-justify-content:center;
+    color:white;
 
-align-items:center;
+    position:relative;
 
 }
+
+/* ===========================
+   BACKGROUND STARS
+=========================== */
 
 #stars{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(white 1px, transparent 1px);
-    background-size: 40px 40px;
-    animation: move 50s linear infinite;
-    opacity: .4;
 
-    /* TAMBAHKAN */
-    pointer-events: none;
-    z-index: 0;
-}
+    position:fixed;
 
-@keyframes move{
+    top:0;
+    left:0;
 
-from{
+    width:100%;
+    height:100%;
 
-transform:translateY(0);
+    background:
+    radial-gradient(white 1px,transparent 1px);
 
-}
+    background-size:40px 40px;
 
-to{
+    opacity:.35;
 
-transform:translateY(-400px);
+    animation:moveStars 60s linear infinite;
+
+    pointer-events:none;
+
+    z-index:0;
 
 }
 
+@keyframes moveStars{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-500px);
+    }
+
 }
+
+/* ===========================
+   LOADING
+=========================== */
 
 .loading{
+
     text-align:center;
+
     position:relative;
+
     z-index:10;
+
+}
+
+.loading h1{
+
+    font-size:42px;
+
+    margin-bottom:30px;
+
+    font-family:'Great Vibes',cursive;
+
+    color:#ff77b7;
+
 }
 
 .progress{
 
-width:320px;
+    width:340px;
 
-height:22px;
+    max-width:85vw;
 
-background:#333;
+    height:20px;
 
-border-radius:30px;
+    background:#2f3542;
 
-margin-top:25px;
+    border-radius:40px;
 
-overflow:hidden;
+    overflow:hidden;
+
+    margin:auto;
+
+    box-shadow:0 0 20px rgba(255,255,255,.15);
 
 }
 
 .bar{
 
-width:0%;
+    width:0%;
 
-height:100%;
+    height:100%;
 
-background:linear-gradient(90deg,#ff0080,#ff6ec7);
+    background:linear-gradient(
+        90deg,
+        #ff4d94,
+        #ff7eb6,
+        #ffc371
+    );
 
-transition:.1s;
+    border-radius:40px;
+
+    transition:.08s;
 
 }
 
 #percent{
 
-margin-top:15px;
+    margin-top:18px;
 
-font-size:22px;
+    font-size:22px;
+
+    font-weight:bold;
 
 }
 
+/* ===========================
+   CONTAINER
+=========================== */
+
 .hidden{
 
-display:none;
+    display:none;
 
 }
 
 .container{
-    text-align:center;
-    animation:fade .8s;
+
     position:relative;
+
     z-index:10;
-}
 
-@keyframes fade{
+    text-align:center;
 
-from{
+    animation:fade .8s ease;
 
-opacity:0;
+    width:90%;
 
-transform:translateY(30px);
+    max-width:700px;
 
-}
+    padding:40px;
 
-to{
+    background:rgba(255,255,255,.05);
 
-opacity:1;
+    backdrop-filter:blur(12px);
 
-transform:translateY(0);
+    border-radius:25px;
 
-}
+    box-shadow:0 0 35px rgba(255,105,180,.15);
 
 }
 
 .container h2{
 
-font-size:55px;
+    font-family:'Great Vibes',cursive;
 
-font-family:'Great Vibes';
+    font-size:65px;
 
-margin-bottom:20px;
+    color:#ff7eb6;
 
-color:#ff77b7;
+    margin-bottom:20px;
 
 }
 
 .container p{
 
-font-size:22px;
+    font-size:22px;
 
-margin-bottom:30px;
+    line-height:1.8;
+
+    margin-bottom:35px;
 
 }
 
+/* ===========================
+   BUTTON
+=========================== */
+
 button{
 
-padding:16px 45px;
+    padding:16px 40px;
 
-border:none;
+    border:none;
 
-border-radius:40px;
+    border-radius:50px;
 
-font-size:20px;
+    background:linear-gradient(
+        135deg,
+        #ff4d94,
+        #ff2d75
+    );
 
-cursor:pointer;
+    color:white;
 
-background:#ff2d75;
+    font-size:20px;
 
-color:white;
+    cursor:pointer;
 
-transition:.3s;
+    transition:.3s;
+
+    font-weight:600;
 
 }
 
 button:hover{
 
-transform:scale(1.1);
+    transform:translateY(-4px) scale(1.05);
 
-box-shadow:0 0 25px hotpink;
+    box-shadow:0 10px 30px rgba(255,45,117,.5);
+
+}
+
+button:active{
+
+    transform:scale(.96);
+
+}
+
+/* ===========================
+   FADE
+=========================== */
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ===========================
+   HEART FLOAT
+=========================== */
+
+.heart{
+
+    position:absolute;
+
+    color:#ff6aa8;
+
+    animation:fall linear forwards;
+
+    pointer-events:none;
+
+}
+
+@keyframes fall{
+
+    0%{
+
+        transform:translateY(-40px);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:translateY(110vh);
+
+        opacity:0;
+
+    }
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+.loading h1{
+
+    font-size:34px;
+
+}
+
+.container{
+
+    padding:30px 20px;
+
+}
+
+.container h2{
+
+    font-size:50px;
+
+}
+
+.container p{
+
+    font-size:18px;
+
+}
+
+button{
+
+    width:100%;
+
+    font-size:18px;
+
+}
+
+.progress{
+
+    width:90%;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.container h2{
+
+    font-size:42px;
+
+}
+
+.loading h1{
+
+    font-size:30px;
+
+}
+
+#percent{
+
+    font-size:18px;
+
+}
 
 }
