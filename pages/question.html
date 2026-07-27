@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Untuk Kamu ❤️</title>
+
+<link rel="stylesheet" href="../style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+background:#0f172a;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+}
+
+.card{
+
+width:90%;
+max-width:420px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+padding:35px;
+
+border-radius:25px;
+
+text-align:center;
+
+animation:fade .8s;
+
+box-shadow:0 0 35px rgba(255,105,180,.25);
+
+}
+
+.card h1{
+
+font-family:Great Vibes;
+
+font-size:52px;
+
+color:#ff7eb6;
+
+margin-bottom:20px;
+
+}
+
+.card p{
+
+margin-bottom:25px;
+
+line-height:1.6;
+
+}
+
+input{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:15px;
+
+font-size:18px;
+
+margin-bottom:20px;
+
+outline:none;
+
+}
+
+button{
+
+width:100%;
+
+}
+
+#error{
+
+margin-top:20px;
+
+color:#ff9b9b;
+
+font-weight:bold;
+
+min-height:30px;
+
+}
+
+#love{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+overflow:hidden;
+
+}
+
+.heart{
+
+position:absolute;
+
+font-size:25px;
+
+animation:fall linear forwards;
+
+}
+
+@keyframes fall{
+
+0%{
+
+transform:translateY(-50px);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(110vh);
+
+opacity:0;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="love"></div>
+
+<div class="card">
+
+<h1>Hai Sayang ❤️</h1>
+
+<p>
+
+Sebelum melihat hadiahmu...
+
+Jawab dulu pertanyaan ini ya 😊
+
+</p>
+
+<input type="date" id="birthday">
+
+<button onclick="cekTanggal()">
+
+Lanjut ❤️
+
+</button>
+
+<div id="error"></div>
+
+</div>
+
+<script>
+
+function randomHeart(){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.animationDuration=(3+Math.random()*4)+"s";
+
+document.getElementById("love").appendChild(heart);
+
+setTimeout(()=>heart.remove(),7000);
+
+}
+
+setInterval(randomHeart,500);
+
+function cekTanggal(){
+
+const value=document.getElementById("birthday").value;
+
+const error=document.getElementById("error");
+
+
+// GANTI TANGGAL INI
+const benar="2000-12-29";
+
+
+if(value===benar){
+
+error.style.color="#9dffb3";
+
+error.innerHTML="Yeayy ❤️ Jawaban benar...";
+
+setTimeout(()=>{
+
+window.location.href="gift.html";
+
+},1500);
+
+}else{
+
+error.style.color="#ff8f8f";
+
+error.innerHTML="Hmm... Masa lupa ulang tahun sendiri? 😂";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
