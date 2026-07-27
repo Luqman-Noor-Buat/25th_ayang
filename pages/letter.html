@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Surat Untukmu ❤️</title>
+<title>Surat Untuk Ayang ❤️</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,13 +29,17 @@ display:flex;
 
 justify-content:center;
 
-align-items:center;
+align-items:flex-start;
 
-height:100vh;
+min-height:100vh;
 
-overflow:hidden;
+overflow-y:auto;
+
+overflow-x:hidden;
 
 color:white;
+
+padding:40px 20px;
 
 }
 
@@ -180,18 +184,23 @@ transform:scale(1.05);
 </head>
 
 <body>
+  
+<audio id="bgMusic" autoplay loop>
+    <source src="../assets/music.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung audio.
+</audio>
 
 <div id="bgHeart"></div>
 
 <div class="card">
 
-<h1>Untuk Kamu ❤️</h1>
+<h1>Untuk Ayang ❤️</h1>
 
 <div id="text"></div>
 
 <button id="next">
 
-Lihat Kejutan Terakhir 🎂
+Lihat Kejutan Terakhir Ayang 🎂
 
 </button>
 
@@ -203,23 +212,25 @@ const isi=`
 
 Selamat ulang tahun sayang ❤️
 
-Semoga di umur yang baru ini kamu selalu diberikan kesehatan, kebahagiaan, dan rezeki yang melimpah.
+Semoga di umur yang baru ini, ayang selalu diberikan kesehatan, kebahagiaan, dan rezeki yang melimpah ayang.
 
-Semoga semua impianmu tercapai satu per satu.
+Semoga semua impian ayang tercapai satu per satu.
 
 Terima kasih karena sudah hadir dan menjadi seseorang yang begitu berarti.
 
-Semoga senyummu tidak pernah hilang.
+Terima kasih sudah selalu ada dan menjadi rumah ternyaman untuk mas.
 
-Semoga setiap langkahmu selalu dipenuhi kebahagiaan.
+Semoga senyum ayang tidak pernah hilang.
+
+Semoga setiap langkah ayang selalu dipenuhi kebahagiaan.
 
 Dan semoga...
 
-Aku bisa terus menjadi bagian dari perjalanan hidupmu.
+Kita segera menikah ayang.
 
 Happy Birthday ❤️
 
-I Love You.
+Mas Love Ayang ❤️
 
 `;
 
@@ -280,6 +291,22 @@ h.remove();
 }
 
 setInterval(hati,450);
+
+const music = document.getElementById("bgMusic");
+
+// Coba autoplay
+music.play().catch(() => {
+    console.log("Autoplay diblokir browser.");
+
+    // Jika diblokir, musik akan diputar setelah interaksi pertama
+    document.addEventListener(
+        "click",
+        () => {
+            music.play();
+        },
+        { once: true }
+    );
+});
 
 </script>
 
