@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Surprise ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:linear-gradient(135deg,#09090f,#1d2436);
+
+font-family:Poppins,sans-serif;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+height:100vh;
+
+overflow:hidden;
+
+color:white;
+
+}
+
+.container{
+
+text-align:center;
+
+}
+
+h1{
+
+font-family:"Great Vibes";
+
+font-size:55px;
+
+margin-bottom:15px;
+
+color:#ff77b7;
+
+}
+
+p{
+
+margin-bottom:30px;
+
+}
+
+.wrapper{
+
+position:relative;
+
+width:320px;
+
+height:320px;
+
+margin:auto;
+
+}
+
+img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+border-radius:20px;
+
+}
+
+.cover{
+
+position:absolute;
+
+background:#ff2d75;
+
+cursor:pointer;
+
+transition:.5s;
+
+border:1px solid white;
+
+}
+
+#finish{
+
+display:none;
+
+margin-top:35px;
+
+}
+
+button{
+
+margin-top:20px;
+
+padding:15px 35px;
+
+border:none;
+
+background:#ff2d75;
+
+border-radius:40px;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+}
+
+canvas{
+
+position:fixed;
+
+left:0;
+top:0;
+
+pointer-events:none;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="canvas"></canvas>
+
+<div class="container">
+
+<h1>Buka Kejutan ❤️</h1>
+
+<p>
+
+Klik semua kotak agar fotonya muncul.
+
+</p>
+
+<div class="wrapper" id="wrapper">
+
+<img src="../assets/brownies.jpg">
+
+</div>
+
+<div id="finish">
+
+<h2>🎉 Happy Birthday Sayang ❤️</h2>
+
+<button onclick="nextPage()">
+
+Baca Surat 💌
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const wrapper=document.getElementById("wrapper");
+
+let total=0;
+
+for(let y=0;y<3;y++){
+
+for(let x=0;x<3;x++){
+
+const div=document.createElement("div");
+
+div.className="cover";
+
+div.style.width="33.33%";
+
+div.style.height="33.33%";
+
+div.style.left=(x*33.33)+"%";
+
+div.style.top=(y*33.33)+"%";
+
+div.onclick=function(){
+
+this.style.opacity="0";
+
+this.style.pointerEvents="none";
+
+total++;
+
+if(total==9){
+
+document.getElementById("finish").style.display="block";
+
+firework();
+
+}
+
+};
+
+wrapper.appendChild(div);
+
+}
+
+}
+
+function nextPage(){
+
+window.location.href="letter.html";
+
+}
+
+const canvas=document.getElementById("canvas");
+
+const ctx=canvas.getContext("2d");
+
+canvas.width=innerWidth;
+
+canvas.height=innerHeight;
+
+function firework(){
+
+for(let i=0;i<180;i++){
+
+setTimeout(()=>{
+
+ctx.beginPath();
+
+ctx.arc(
+
+Math.random()*canvas.width,
+
+Math.random()*canvas.height,
+
+3,
+
+0,
+
+Math.PI*2
+
+);
+
+ctx.fillStyle=`hsl(${Math.random()*360},100%,60%)`;
+
+ctx.fill();
+
+},i*10);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
