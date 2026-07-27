@@ -29,22 +29,17 @@ align-items:center;
 }
 
 #stars{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(white 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: move 50s linear infinite;
+    opacity: .4;
 
-position:fixed;
-
-width:100%;
-
-height:100%;
-
-background:
-radial-gradient(white 1px,transparent 1px);
-
-background-size:40px 40px;
-
-animation:move 50s linear infinite;
-
-opacity:.4;
-
+    /* TAMBAHKAN */
+    pointer-events: none;
+    z-index: 0;
 }
 
 @keyframes move{
@@ -64,9 +59,9 @@ transform:translateY(-400px);
 }
 
 .loading{
-
-text-align:center;
-
+    text-align:center;
+    position:relative;
+    z-index:10;
 }
 
 .progress{
@@ -112,11 +107,10 @@ display:none;
 }
 
 .container{
-
-text-align:center;
-
-animation:fade .8s;
-
+    text-align:center;
+    animation:fade .8s;
+    position:relative;
+    z-index:10;
 }
 
 @keyframes fade{
